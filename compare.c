@@ -25,28 +25,28 @@ double compare(mfcc_frame *mfcc_frames1, unsigned int n1, mfcc_frame *mfcc_frame
 		}
 	}
 
-	//Fuelle die Raender mit Unendlich
+	//Fill the edges with infinity
 	for (i = 0; i <= n1; i++)
 		distances[i][0] = atof("Inf");
 	for (i = 0; i <= n2; i++)
 		distances[0][i] = atof("Inf");
-	//Der einzig gueltige Startwert am Rand
+	//The only valid starting point on the edge
 	distances[0][0] = 0;
 
-	//Berechne den guenstigsten Weg von einem zum anderen Ende der Matrix
+	//Calculate the best way from one end of the matrix to the other
 	for (i = 1; i <= n1; i++)
 		for (j = 1; j <= n2; j++)
 		{
-			//Bestimme den guenstigsten Vorgaenger
+			//Determine the cheapest predecessor
 			double prev_min = distances[i - 1][j];
 			if (distances[i - 1][j - 1] < prev_min)
 				prev_min = distances[i - 1][j - 1];
 			if (distances[i][j - 1] < prev_min)
 				prev_min = distances[i][j - 1];
-			//Fuehre den Schritt aus
+			//Take the step out
 			distances[i][j] += prev_min;
 		}
 
-	//Normalisiere die Distanz
+	//Normalize the distance
 	return distances[n1][n2] / sqrt(pow(n1, 2) + pow(n2, 2));
 }

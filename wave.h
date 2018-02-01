@@ -11,11 +11,21 @@
  */
 #define WAVE_FORMAT 0x001 //PCM
 #define WAVE_CHANNELS 1
-#define WAVE_SAMPLE_RATE 44100
+#define WAVE_SAMPLE_RATE 8000
 #define WAVE_BITS_PER_SAMPLE 16
+#define WAVE_BYTE_PER_SAMPLE (WAVE_BITS_PER_SAMPLE/8)
 #define WAVE_FRAME_SIZE ((WAVE_BITS_PER_SAMPLE + 7) >> 3 * WAVE_CHANNELS) //(bits/sample + 7) / 8 * channels
 #define WAVE_BYTES_PER_SECOND (WAVE_SAMPLE_RATE * WAVE_FRAME_SIZE) //framesize * samplerate
+#include <stdio.h>
 
+typedef
+	struct _wav
+	{
+		FILE *f ;
+		void *f_buf ;
+		unsigned int size;
+		char *name;
+	} wav;
 /**
  * Versucht die mit filename spezifizierte wave-Datei zu oeffnen und liefert folgenden Wert zurueck:
  * (0) Erfolg
@@ -28,7 +38,7 @@
  * <<<OUTPUT>>>
  * (int)		0, falls erfolgreich geoffnet wurde, sonst eine negative Zahl (siehe oben)
  */
-int open_wave(const char *path);
+int open_wave(const char *path,wav **wav);
 
 /**
  * Liest aus der vorher geoffneten wave-Datei den ersten PCM-Datenblock aus (es sollte nur einen geben).
@@ -38,7 +48,7 @@ int open_wave(const char *path);
  * <<<OUTPUT>>>
  * (unsigned int)	Die Groesse des Puffers
  */
-unsigned int read_pcm(void **buffer);
+unsigned int read_pcm(wav *wav,void **buffer);
 
 /**
  * Schreibt die sich in buffer befindlichen PCM-Daten der Laenge size in eine Datei.
@@ -53,12 +63,12 @@ unsigned int read_pcm(void **buffer);
  * <<<OUTPUT>>>
  * (int)			Im Fehlerfall -1, sonst 0
  */
-int write_pcm(const void *buffer, const unsigned int size, const char *path);
+int write_pcm(wav *wav,const void *buffer, const unsigned int size, const char *path);
 
 /**
  * Schliesst die zuvor mit open_wave geoffnete Datei wieder.
  * Diese Funktion muss aufgerufen werden bevor ein weiterer open_wave-Aufruf erfolgt.
  */
-void close_wave(void);
+void close_wave(wav *wav);
 
 #endif

@@ -6,17 +6,18 @@
 #ifndef __FRAME_H__
 #define __FRAME_H__
 
-#include <sys/types.h>
-
-//Die Anzahl der Werte in jedem Rahmen
+// #include <sys/types.h>
+#include <stdint.h>
+//The number of values in each frame
 #define N 512
 
-//Die Anzahl der Mel-Filter
+//The number of mel filters
 #define N_FILTER 26
 
-//Die Anzahl der MFCC-Merkmale
-#define N_MFCC N_FILTER 
-
+//The number of MFCC features
+#define N_MFCC 13 //N_FILTER 
+//Overlapping the frame
+#define OVERLAP (N / 2)
 /*
  * Struktur, die einen Rahmen darstellt.
  * Die Werte im Rahmen sind die Intensitaeten der Darstellung der Funktion im Frequenzbereich.

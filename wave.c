@@ -5,17 +5,17 @@
 
 #include "wave.h"
 
-#include <stdio.h>
+
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
-//Derzeit geoeffnete Datei
-static FILE *f = NULL;
-//Inhalt der derzeit geoffneten Datei
-static void *f_buf = NULL;
+// //Derzeit geoeffnete Datei
+// static FILE *f = NULL;
+// //Inhalt der derzeit geoffneten Datei
+// static void *f_buf = NULL;
 //Grundgeruest jedes WAVE-Headers
 static char header[45] = "RIFF1234WAVEfmt 12341212123412341212data1234";
 
@@ -26,18 +26,19 @@ static char header[45] = "RIFF1234WAVEfmt 12341212123412341212data1234";
  */
 void prepare_header(const unsigned int size);
 
-int open_wave(const char *path)
+int open_wave(const char *path,wav **pwav)
 {
+	FILE *f;
+	void *f_buf ;
 	struct stat st;
-
 	//Oeffnen
-	f = fopen(path, "r+");
+	f = fopen(path, "r");
 	if (f == NULL)
 		return -1;
 	if (stat(path, &st) != 0 || st.st_size <= 44)
 	{
 		fclose(f);
-		return -1;
+		return -2;
 	}
 
 	//Lesen
@@ -52,30 +53,40 @@ int open_wave(const char *path)
 	{
 		free(f_buf);
 		fclose(f);
-		return -2;
+		return -3;
 	}
 	if (memcmp(header + 4, (char *)f_buf + 4, 4) != 0)
-		fprintf(stderr, "WARNUNG: Groesse im wave-Header nicht gleich der Groesse auf dem Dateisystem\n");
+		fprintf(stderr, "WARNUNG: Size in the wave header is not equal to the size on the file system\n");
 	if (memcmp(header + 8, (char *)f_buf + 8, 32) != 0)
 	{
 		free(f_buf);
 		fclose(f);
-		return -2;
+		fprintf(stderr, "file %s format is not correct\n",path);
+		return -4;
 	}
 	if (memcmp(header + 40, (char *)f_buf + 40, 4) != 0)
-		fprintf(stderr, "WARNUNG: Groesse im wave-Header nicht gleich der Groesse auf dem Dateisystem oder mehrere Datenbloecke\n");
+		fprintf(stderr, "WARNUNG: Size in the wave header is not equal to the size on the file system or multiple data blocks\n");
+	fclose(f);
+	*pwav = malloc(sizeof(wav));
+	// (*wav)->f = f;
+	(*pwav)->f_buf = f_buf;
+	(*pwav)->size = st.st_size;
+	char *filepath = malloc(strlen(path)+1);
+	memcpy(filepath, path, strlen(path)+1);
+	(*pwav)->name = filepath;
 	return 0;
 }
 
-unsigned int read_pcm(void **buffer)
+unsigned int read_pcm(wav *wav,void **buffer)
 {
-	unsigned int data_size = *((int *)f_buf + 10);
-	*buffer = malloc(data_size);
-	memcpy(*buffer, (char *)f_buf + 44, data_size);
+	unsigned int data_size = *((int *)wav->f_buf + 10);
+	*buffer = (char *)wav->f_buf + 44;
+	// *buffer = malloc(data_size);
+	// memcpy(*buffer, (char *)wav->f_buf + 44, data_size);
 	return data_size;
 }
 
-int write_pcm(const void *buffer, const unsigned int size, const char *path)
+int write_pcm(wav *wav,const void *buffer, const unsigned int size, const char *path)
 {
 	FILE *file = NULL;
 
@@ -84,8 +95,9 @@ int write_pcm(const void *buffer, const unsigned int size, const char *path)
 		file = fopen(path, "w");
 	else
 	{
-		rewind(f);
-		file = f;
+		return -1;
+		// rewind(wav->f);
+		// file = wav->f;
 	}
 	if (file == NULL)
 		return -1;
@@ -103,10 +115,14 @@ int write_pcm(const void *buffer, const unsigned int size, const char *path)
 	return 0;
 }
 
-void close_wave(void)
+void close_wave(wav *wav)
 {
-	free(f_buf);
-	fclose(f);
+	if(wav != NULL){
+		free(wav->f_buf);
+		// fclose(wav->f);
+		free(wav->name);
+		// free(wav);
+	}	
 }
 
 void prepare_header(const unsigned int size)

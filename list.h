@@ -7,7 +7,7 @@
 #define __LIST_H__
 
 #include "frame.h"
-
+#include "wave.h"
 /*
  * Sellt eine Liste gesprochener Woerter durch ihre MFCC-Merkmale dar.
  * (mfcc_frame *) frames	Die MFCC-Merkmale des aktuellen Wortes
@@ -16,13 +16,21 @@
  * (struct _word *) next	Das naechste Wort in der verketteten Liste
  */
 typedef
-	struct _word
+	struct _mfcclist
 	{
 		mfcc_frame *frames;
 		unsigned int n;
 		char *name;
-		struct _word *next;
-	} word;
+		struct _mfcclist *next;
+	} mfcclist;
+
+typedef
+	struct _wavlist
+	{
+		wav *wav;
+		struct _wavlist *next;
+	} wavlist;
+
 
 /*
  * Speichert ein neues Wort in das Verzeichnis words mit dem Dateinamen, die im Parameter name enthalten ist.
@@ -31,7 +39,7 @@ typedef
  * (unsigned int) n		Die Anzahl der Merkmals-Rahmen
  * (char *) bezeichnung		Die Bezeichnung des Wortes und gleichzeitig der Dateiname, unter welchem abgespeichert wird
  */
-void new_word(mfcc_frame *frames, unsigned int n, char *bezeichnung);
+void new_mfcc(mfcc_frame *frames, unsigned int n, char *path);
 
 /*
  * Liefert eine Liste aller im Verzeichnis words abgespeicherten Woertern.
@@ -42,6 +50,9 @@ void new_word(mfcc_frame *frames, unsigned int n, char *bezeichnung);
  * <<<OUTPUT>>>
  * (int)		Die Anzahl der Woerter
  */
-int get_list(word *head);
+int get_mfcc_list(mfcclist **head);
+void free_mfcc_list(mfcclist *head);
+int get_wav_list(const char* path,wavlist **head);
+void free_wav_list(wavlist *head);
 
 #endif

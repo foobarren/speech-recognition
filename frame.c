@@ -11,11 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Ueberschneidung der Rahmen
-#define OVERLAP (N / 8)
-
-//Asymmetrische Dreiecksfilter
-//Liste von Mittelfrequenzen; Bandbreite von links benachbarter bis rechts benachbarter Mittelfrequenz
+//Asymmetrical triangular filters
+//List of medium frequencies; Bandwidth from left adjacent to right adjacent center frequency
 static int mel_filters[N_FILTER] = {150, 200, 250, 300, 350, 400, 450,	//Linear
 				490, 560, 640, 730, 840, 960, 1100,	//500-1000Hz Logarithmisch
 				1210, 1340, 1480, 1640, 1810, 2000,	//1000-2000Hz Logarithmisch
@@ -23,7 +20,7 @@ static int mel_filters[N_FILTER] = {150, 200, 250, 300, 350, 400, 450,	//Linear
 
 unsigned int make_frames_hamming(int16_t *buffer, unsigned int n, frame **frames)
 {
-	//Die Rahmen ueberlappen sich zum Teil
+	//The frames overlap in part
 	unsigned int frame_number = (n / (N - OVERLAP)) - 1;
 	comp *result = malloc(sizeof(comp) * frame_number * N);
 	comp *data = malloc(sizeof(comp) * frame_number * N);
@@ -31,26 +28,26 @@ unsigned int make_frames_hamming(int16_t *buffer, unsigned int n, frame **frames
 	double pi = 4 * atan(1.0);
 
 	*frames = malloc(sizeof(frame) * frame_number);
-	//Erzeuge die Rahmen
+	//Create the frames
 	for (i = 0; i < frame_number; i++)
 	{
-		pos = (i + 1) * (N - 64);
+		pos = (i + 1) * (N - OVERLAP);
 		for (j = 0; j < N; j++)
 		{
-			//Filtere die Werte, sodass sie am Rand duerfen weniger Gewicht haben.
-			//Die diskrete Fourier-Transformation setzt eine periodische Funktion voraus, somit wuerden die Werte am Rand des Rahmens diese verfaelschen.
+			//Filter the values so that they have less weight on the edge
+			//The discrete Fourier transform assumes a periodic function, so the values at the edge of the frame would corrupt it.
 			data[i * N + j].real = buffer[pos + j] * (0.54 + 0.46 * cos(2 * pi * (j - N / 2) / N));
 			data[i * N + j].imag = 0;
 		}
 	}
-	//Transformiere die einzelnen Rahmen
+	//Transform the individual frames
 	for (i = 0; i < frame_number; i++)
 		fft(data + i * N, result + i * N, N);
-	//Berechne die Intensitaeten und ignoriere die Phasenverschiebung
+	//Compute the intensities and ignore the phase shift
 	for (i = 0; i < frame_number; i++)
 		for (j = 0; j < N; j++)
 			(*frames)[i].magnitudes[j] = sqrt(pow(result[i * N + j].real, 2) + pow(result[i * N + j].imag, 2));
-	//Normalisiere Intensitaeten
+	//Normalize intensities
 	for (i = 0; i < frame_number; i++)
 	{
 		double mean = 0;
