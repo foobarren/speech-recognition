@@ -21,7 +21,7 @@
 typedef
 	struct _wav
 	{
-		FILE *f ;
+		// FILE *f ;
 		void *f_buf ;
 		unsigned int size;
 		char *name;
@@ -38,7 +38,7 @@ typedef
  * <<<OUTPUT>>>
  * (int)		0, falls erfolgreich geoffnet wurde, sonst eine negative Zahl (siehe oben)
  */
-int open_wave(const char *path,wav **wav);
+int open_wave(const char *path,wav **pwav);
 
 /**
  * Liest aus der vorher geoffneten wave-Datei den ersten PCM-Datenblock aus (es sollte nur einen geben).
@@ -63,7 +63,7 @@ unsigned int read_pcm(wav *wav,void **buffer);
  * <<<OUTPUT>>>
  * (int)			Im Fehlerfall -1, sonst 0
  */
-int write_pcm(wav *wav,const void *buffer, const unsigned int size, const char *path);
+int write_pcm(const void *buffer, const unsigned int size, const char *path);
 
 /**
  * Schliesst die zuvor mit open_wave geoffnete Datei wieder.

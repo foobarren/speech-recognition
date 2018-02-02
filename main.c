@@ -19,22 +19,31 @@
 
 #define FRAMES 6
 #define SAMPLES (FRAMES+1)*(N - OVERLAP)
+#define WINSTEP ((N-OVERLAP)*1000.0/WAVE_SAMPLE_RATE)
 
 #define MAX_SIZE 255
 
 char curpath[MAX_SIZE];
-
+int isDebug = 0;
 
 void words_capture(int how);
-void create_mfcc();
-void mfcc_compare();
+void create_basemfcc();
+void mfcc_compare(int type);
 
-int main(void)
+int main(int argc,char *argv[])
 {
+	if(argc==2)
+	{
+		if (memcmp(argv[1],"-v",2)== 0)
+		{
+			isDebug = 1;
+		}
+	} 
+
 	char ans[50];
 	do
 	{
-		printf("(m)make mfcc files from waves path, (l)list mfcc path files, (c)compare files in compare path, (e)exit: ");
+		printf("(m)make mfcc files from waves path, (l)list mfcc path files, (c)compare files in compare path,(b)best score,  (e)exit: ");
 		scanf("%s", (char *)ans);
 		// printf("enter %s \n",ans);
 		// getcwd(curpath,sizeof(curpath));
@@ -43,27 +52,31 @@ int main(void)
 		{
 			case 'm':
 				// usleep(200000);
-				create_mfcc();
+				create_basemfcc();
 				break;
 			case 'l':
 				system("ls mfcc");
 				break;
 			case 'c':
 				// usleep(200000);
-				mfcc_compare();
+				mfcc_compare(1);
+				break;
+			case 'b':
+				// usleep(200000);
+				mfcc_compare(0);
 				break;
 		}
 	}
 	while (ans[0] != 'e');
 	return 0;
 }
-void create_mfcc()
+void create_basemfcc()
 {
 	unsigned int size = 0;
 	wavlist *head=NULL,*node=NULL;	
 	get_wav_list("waves",&head);
 	node = head;
-	chdir("mfcc");
+	chdir("basemfcc");
 	while (node != NULL)
 	{
 		void* buffer=NULL;		
@@ -89,7 +102,9 @@ void create_mfcc()
 	free_wav_list(head);
 	chdir("..");
 }
-void mfcc_compare()
+//type 1 found immediately break
+//type 0 found best score
+void mfcc_compare(int type)
 {
 	unsigned int size = 0;
 	wavlist *head=NULL,*node=NULL;
@@ -111,41 +126,58 @@ void mfcc_compare()
 				unsigned int nsamples = size/(N - OVERLAP)-1;
 				struct timeval tv1,tv2,tv3;
 				struct timezone tz1,tz2,tz3;
-				gettimeofday(&tv1, &tz1);
-				gettimeofday(&tv2, &tz2);
+				
+				// gettimeofday(&tv2, &tz2);
 				for (i=0;i<nsamples;i++)
 				{							
 					frame *frames = NULL;
 					mfcc_frame *mfcc_frames = NULL;
 					int frame_n =0;
-					
+					gettimeofday(&tv1, &tz1);
 					frame_n = make_frames_hamming((int16_t*)(buffer+beginsample*WAVE_BYTE_PER_SAMPLE), SAMPLES, &frames);
 					mfcc_frames = (mfcc_frame*)malloc(sizeof(mfcc_frame) * frame_n);
 					mfcc_features(frames, frame_n, mfcc_frames);
-
-					// gettimeofday(&tv2, &tz2);
-					// printf("mfcc time %d . %d\n",tv2.tv_sec-tv1.tv_sec,tv2.tv_usec-tv1.tv_usec);
+					gettimeofday(&tv2, &tz2);
+					if(isDebug)
+						printf("i:%d  mfcc time %ld . %ld\n",i,tv2.tv_sec-tv1.tv_sec,tv2.tv_usec-tv1.tv_usec);
 					words = wordhead;
 					while (words != NULL)
 					{
 						double now = compare(mfcc_frames, frame_n, words->frames, frame_n);
-						if(now <1){
+						if(now <0.95){
 							isfound =1;
-							printf("%f %d %s %s \n", now,i, words->name,node->wav->name);
-							break;
+							printf("match at second:%f  score:%f mfcc:%s wav:%s \n", i*WINSTEP/1000,now, words->name,node->wav->name);
+							if(type)
+								break;
 						}							
 						words = words->next;
 					}					
 					beginsample = beginsample+ (N - OVERLAP);
+					if(isDebug)
+					{
+						char *path = (char*)malloc(strlen(node->wav->name) + 9);
+						char *ext = ".mfcc";
+						char str_int[4];
+						itoa(i, str_int, 10);  
+						memcpy(path, node->wav->name, strlen(node->wav->name));
+						memcpy(path + strlen(node->wav->name), str_int, strlen(str_int));
+						memcpy(path + strlen(node->wav->name)+strlen(str_int), ext, 6);
+						new_mfcc(mfcc_frames, frame_n, path);
+						free(path);
+					}						
 					free(mfcc_frames);
 					free(frames);
-					if(isfound)
+					gettimeofday(&tv3, &tz3);
+					if(isDebug)
+						printf("i:%d  compare time %ld . %ld\n",i,tv3.tv_sec-tv1.tv_sec,tv3.tv_usec-tv1.tv_usec);
+					if(isfound && type)
 						break;
 				}
-				gettimeofday(&tv3, &tz3);
-				printf("compare time %ld . %ld\n",tv3.tv_sec-tv2.tv_sec,tv3.tv_usec-tv2.tv_usec);
+				if(isfound==0)
+					printf("wav %s match  failed!!! \n",node->wav->name);
+				// gettimeofday(&tv3, &tz3);
+				// printf("compare time %ld . %ld\n",tv3.tv_sec-tv2.tv_sec,tv3.tv_usec-tv2.tv_usec);
 				node=node->next;
-				// free(buffer);
 			}	
 			free_mfcc_list(wordhead);		
 		}

@@ -1,0 +1,582 @@
+[
+    {
+        "keytime": "3200", 
+        "file": "不方便接听07.wav"
+    }, 
+    {
+        "keytime": "6550", 
+        "file": "余额不足01.wav"
+    }, 
+    {
+        "keytime": "2470", 
+        "file": "关机04.wav"
+    }, 
+    {
+        "keytime": "4120", 
+        "file": "关机05.wav"
+    }, 
+    {
+        "keytime": "4220", 
+        "file": "加拨零01.wav"
+    }, 
+    {
+        "keytime": "1670", 
+        "file": "号码过期04.wav"
+    }, 
+    {
+        "keytime": "1670", 
+        "file": "号码过期05.wav"
+    }, 
+    {
+        "keytime": "2050", 
+        "file": "号码过期06.wav"
+    }, 
+    {
+        "keytime": "2050", 
+        "file": "号码过期07.wav"
+    }, 
+    {
+        "keytime": "3090", 
+        "file": "呼入限制01.wav"
+    }, 
+    {
+        "keytime": "3650", 
+        "file": "呼入限制02.wav"
+    }, 
+    {
+        "keytime": "2720", 
+        "file": "呼入限制03.wav"
+    }, 
+    {
+        "keytime": "3510", 
+        "file": "呼入限制04.wav"
+    }, 
+    {
+        "keytime": "3150", 
+        "file": "已停机19.wav"
+    }, 
+    {
+        "keytime": "1850", 
+        "file": "已停机21.wav"
+    }, 
+    {
+        "keytime": "2080", 
+        "file": "已停机22.wav"
+    }, 
+    {
+        "keytime": "2100", 
+        "file": "已停机23.wav"
+    }, 
+    {
+        "keytime": "2050", 
+        "file": "已停机25.wav"
+    }, 
+    {
+        "keytime": "1940", 
+        "file": "已停机26.wav"
+    }, 
+    {
+        "keytime": "1830", 
+        "file": "已停机27.wav"
+    }, 
+    {
+        "keytime": "1530", 
+        "file": "已停机28.wav"
+    }, 
+    {
+        "keytime": "1940", 
+        "file": "已停机29.wav"
+    }, 
+    {
+        "keytime": "1740", 
+        "file": "已停机30.wav"
+    }, 
+    {
+        "keytime": "2890", 
+        "file": "已停机31.wav"
+    }, 
+    {
+        "keytime": "1900", 
+        "file": "已关机15.wav"
+    }, 
+    {
+        "keytime": "1650", 
+        "file": "已关机16.wav"
+    }, 
+    {
+        "keytime": "3220", 
+        "file": "已关机17.wav"
+    }, 
+    {
+        "keytime": "2960", 
+        "file": "已关机18.wav"
+    }, 
+    {
+        "keytime": "2250", 
+        "file": "已关机20.wav"
+    }, 
+    {
+        "keytime": "2490", 
+        "file": "已关机21.wav"
+    }, 
+    {
+        "keytime": "1750", 
+        "file": "已关机22.wav"
+    }, 
+    {
+        "keytime": "2630", 
+        "file": "已关机23.wav"
+    }, 
+    {
+        "keytime": "1600", 
+        "file": "已关机24.wav"
+    }, 
+    {
+        "keytime": "1650", 
+        "file": "已关机25.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "已关机26.wav"
+    }, 
+    {
+        "keytime": "3400", 
+        "file": "已关机27.wav"
+    }, 
+    {
+        "keytime": "2150", 
+        "file": "已关机28.wav"
+    }, 
+    {
+        "keytime": "1900", 
+        "file": "已关机30.wav"
+    }, 
+    {
+        "keytime": "1630", 
+        "file": "已关机32.wav"
+    }, 
+    {
+        "keytime": "3120", 
+        "file": "已关机33.wav"
+    }, 
+    {
+        "keytime": "2090", 
+        "file": "已关机34.wav"
+    }, 
+    {
+        "keytime": "1300", 
+        "file": "已关机35.wav"
+    }, 
+    {
+        "keytime": "2010", 
+        "file": "已关机36.wav"
+    }, 
+    {
+        "keytime": "2350", 
+        "file": "已关机37.wav"
+    }, 
+    {
+        "keytime": "1900", 
+        "file": "已关机40.wav"
+    }, 
+    {
+        "keytime": "5450", 
+        "file": "已关机41.wav"
+    }, 
+    {
+        "keytime": "700", 
+        "file": "已关机42.wav"
+    }, 
+    {
+        "keytime": "3400", 
+        "file": "已关机43.wav"
+    }, 
+    {
+        "keytime": "3280", 
+        "file": "已关机44.wav"
+    }, 
+    {
+        "keytime": "12600", 
+        "file": "无人接听01.wav"
+    }, 
+    {
+        "keytime": "3770", 
+        "file": "无法接通15.wav"
+    }, 
+    {
+        "keytime": "2020", 
+        "file": "无法接通16.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "无法接通18.wav"
+    }, 
+    {
+        "keytime": "1330", 
+        "file": "无法接通20.wav"
+    }, 
+    {
+        "keytime": "2460", 
+        "file": "无法接通21.wav"
+    }, 
+    {
+        "keytime": "4000", 
+        "file": "无法接通22.wav"
+    }, 
+    {
+        "keytime": "2300", 
+        "file": "无法接通23.wav"
+    }, 
+    {
+        "keytime": "2800", 
+        "file": "无法接通24.wav"
+    }, 
+    {
+        "keytime": "2180", 
+        "file": "无法接通25.wav"
+    }, 
+    {
+        "keytime": "2200", 
+        "file": "无法接通26.wav"
+    }, 
+    {
+        "keytime": "2570", 
+        "file": "无法接通27.wav"
+    }, 
+    {
+        "keytime": "2010", 
+        "file": "无法接通28.wav"
+    }, 
+    {
+        "keytime": "2320", 
+        "file": "无法接通29.wav"
+    }, 
+    {
+        "keytime": "3720", 
+        "file": "无法接通30.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "无法接通31.wav"
+    }, 
+    {
+        "keytime": "1540", 
+        "file": "无法接通32.wav"
+    }, 
+    {
+        "keytime": "3700", 
+        "file": "无法接通33.wav"
+    }, 
+    {
+        "keytime": "1860", 
+        "file": "无法接通34.wav"
+    }, 
+    {
+        "keytime": "1620", 
+        "file": "无法接通35.wav"
+    }, 
+    {
+        "keytime": "2320", 
+        "file": "无法接通36.wav"
+    }, 
+    {
+        "keytime": "3050", 
+        "file": "无法接通37.wav"
+    }, 
+    {
+        "keytime": "3090", 
+        "file": "无法接通38.wav"
+    }, 
+    {
+        "keytime": "3200", 
+        "file": "无法接通39.wav"
+    }, 
+    {
+        "keytime": "3700", 
+        "file": "无法接通40.wav"
+    }, 
+    {
+        "keytime": "2700", 
+        "file": "无法接通41.wav"
+    }, 
+    {
+        "keytime": "2730", 
+        "file": "暂停服务01.wav"
+    }, 
+    {
+        "keytime": "1900", 
+        "file": "暂停服务03.wav"
+    }, 
+    {
+        "keytime": "1900", 
+        "file": "暂停服务04.wav"
+    }, 
+    {
+        "keytime": "1900", 
+        "file": "暂停服务05.wav"
+    }, 
+    {
+        "keytime": "1140", 
+        "file": "本地不加003.wav"
+    }, 
+    {
+        "keytime": "2300", 
+        "file": "来电提醒42.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "来电提醒44.wav"
+    }, 
+    {
+        "keytime": "2300", 
+        "file": "来电提醒48.wav"
+    }, 
+    {
+        "keytime": "8330", 
+        "file": "来电提醒50.wav"
+    }, 
+    {
+        "keytime": "2300", 
+        "file": "来电提醒52.wav"
+    }, 
+    {
+        "keytime": "1800", 
+        "file": "来电提醒53.wav"
+    }, 
+    {
+        "keytime": "4480", 
+        "file": "来电提醒54.wav"
+    }, 
+    {
+        "keytime": "3750", 
+        "file": "来电提醒55.wav"
+    }, 
+    {
+        "keytime": "2010", 
+        "file": "来电提醒56.wav"
+    }, 
+    {
+        "keytime": "2600", 
+        "file": "正在通话中40.wav"
+    }, 
+    {
+        "keytime": "3300", 
+        "file": "正在通话中41.wav"
+    }, 
+    {
+        "keytime": "3000", 
+        "file": "正在通话中42.wav"
+    }, 
+    {
+        "keytime": "3650", 
+        "file": "正在通话中43.wav"
+    }, 
+    {
+        "keytime": "2100", 
+        "file": "正在通话中44.wav"
+    }, 
+    {
+        "keytime": "9400", 
+        "file": "正在通话中45.wav"
+    }, 
+    {
+        "keytime": "1100", 
+        "file": "正在通话中46.wav"
+    }, 
+    {
+        "keytime": "2050", 
+        "file": "正在通话中47.wav"
+    }, 
+    {
+        "keytime": "5200", 
+        "file": "正在通话中48.wav"
+    }, 
+    {
+        "keytime": "25420", 
+        "file": "正在通话中49.wav"
+    }, 
+    {
+        "keytime": "4200", 
+        "file": "正在通话中50.wav"
+    }, 
+    {
+        "keytime": "5700", 
+        "file": "正在通话中51.wav"
+    }, 
+    {
+        "keytime": "2650", 
+        "file": "正在通话中52.wav"
+    }, 
+    {
+        "keytime": "2400", 
+        "file": "正在通话中53.wav"
+    }, 
+    {
+        "keytime": "2640", 
+        "file": "正在通话中54.wav"
+    }, 
+    {
+        "keytime": "1300", 
+        "file": "正在通话中55.wav"
+    }, 
+    {
+        "keytime": "7620", 
+        "file": "正在通话中56.wav"
+    }, 
+    {
+        "keytime": "730", 
+        "file": "正在通话中58.wav"
+    }, 
+    {
+        "keytime": "2800", 
+        "file": "正在通话中59.wav"
+    }, 
+    {
+        "keytime": "730", 
+        "file": "正在通话中60.wav"
+    }, 
+    {
+        "keytime": "2800", 
+        "file": "正在通话中61.wav"
+    }, 
+    {
+        "keytime": "1650", 
+        "file": "正在通话中62.wav"
+    }, 
+    {
+        "keytime": "6250", 
+        "file": "正在通话中63.wav"
+    }, 
+    {
+        "keytime": "5100", 
+        "file": "正在通话中66.wav"
+    }, 
+    {
+        "keytime": "1700", 
+        "file": "空号31.wav"
+    }, 
+    {
+        "keytime": "2400", 
+        "file": "空号34.wav"
+    }, 
+    {
+        "keytime": "1700", 
+        "file": "空号35.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "空号36.wav"
+    }, 
+    {
+        "keytime": "2600", 
+        "file": "空号37.wav"
+    }, 
+    {
+        "keytime": "2600", 
+        "file": "空号41.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "空号42.wav"
+    }, 
+    {
+        "keytime": "1600", 
+        "file": "空号43.wav"
+    }, 
+    {
+        "keytime": "2010", 
+        "file": "空号44.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "空号45.wav"
+    }, 
+    {
+        "keytime": "2050", 
+        "file": "空号46.wav"
+    }, 
+    {
+        "keytime": "3000", 
+        "file": "空号47.wav"
+    }, 
+    {
+        "keytime": "2700", 
+        "file": "空号48.wav"
+    }, 
+    {
+        "keytime": "1700", 
+        "file": "空号49.wav"
+    }, 
+    {
+        "keytime": "1200", 
+        "file": "空号50.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "空号51.wav"
+    }, 
+    {
+        "keytime": "3550", 
+        "file": "空号52.wav"
+    }, 
+    {
+        "keytime": "2120", 
+        "file": "空号53.wav"
+    }, 
+    {
+        "keytime": "2250", 
+        "file": "空号54.wav"
+    }, 
+    {
+        "keytime": "2650", 
+        "file": "空号55.wav"
+    }, 
+    {
+        "keytime": "2600", 
+        "file": "空号56.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "空号57.wav"
+    }, 
+    {
+        "keytime": "2500", 
+        "file": "空号58.wav"
+    }, 
+    {
+        "keytime": "2300", 
+        "file": "空号59.wav"
+    }, 
+    {
+        "keytime": "5800", 
+        "file": "空号60.wav"
+    }, 
+    {
+        "keytime": "3000", 
+        "file": "空号61.wav"
+    }, 
+    {
+        "keytime": "2900", 
+        "file": "被限制通话01.wav"
+    }, 
+    {
+        "keytime": "22280", 
+        "file": "通话中01.wav"
+    }, 
+    {
+        "keytime": "10660", 
+        "file": "通话中02.wav"
+    }, 
+    {
+        "keytime": "10800", 
+        "file": "通话中03.wav"
+    }, 
+    {
+        "keytime": "5250", 
+        "file": "通话中04.wav"
+    }, 
+    {
+        "keytime": "9000", 
+        "file": "通话中05.wav"
+    }
+]

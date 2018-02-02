@@ -86,7 +86,7 @@ unsigned int read_pcm(wav *wav,void **buffer)
 	return data_size;
 }
 
-int write_pcm(wav *wav,const void *buffer, const unsigned int size, const char *path)
+int write_pcm(const void *buffer, const unsigned int size, const char *path)
 {
 	FILE *file = NULL;
 

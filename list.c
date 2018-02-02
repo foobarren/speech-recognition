@@ -54,7 +54,7 @@ int get_mfcc_list(mfcclist **head)
 			dentry = readdir(d);
 			continue;
 		}
-		if (!memcmp(dentry->d_name+strlen(dentry->d_name)-5, "mfcc", 4))
+		if (memcmp(dentry->d_name+strlen(dentry->d_name)-4, "mfcc", 4))
 		{
 			dentry = readdir(d);
 			continue;
@@ -117,6 +117,12 @@ int get_wav_list(const char* path,wavlist **head)
 	{
 		//Ignoriere die Standardeintraege
 		if (!memcmp(dentry->d_name, ".", 1))
+		{
+			dentry = readdir(d);
+			continue;
+		}
+		int r = memcmp(dentry->d_name+strlen(dentry->d_name)-3, "wav", 3);
+		if (r)
 		{
 			dentry = readdir(d);
 			continue;

@@ -17,7 +17,7 @@
 //The number of MFCC features
 #define N_MFCC 13 //N_FILTER 
 //Overlapping the frame
-#define OVERLAP (N / 2)
+#define OVERLAP (N / 4)
 /*
  * Struktur, die einen Rahmen darstellt.
  * Die Werte im Rahmen sind die Intensitaeten der Darstellung der Funktion im Frequenzbereich.

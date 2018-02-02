@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 //Asymmetrical triangular filters
 //List of medium frequencies; Bandwidth from left adjacent to right adjacent center frequency
 static int mel_filters[N_FILTER] = {150, 200, 250, 300, 350, 400, 450,	//Linear
@@ -31,7 +32,7 @@ unsigned int make_frames_hamming(int16_t *buffer, unsigned int n, frame **frames
 	//Create the frames
 	for (i = 0; i < frame_number; i++)
 	{
-		pos = (i + 1) * (N - OVERLAP);
+		pos = (i) * (N - OVERLAP);
 		for (j = 0; j < N; j++)
 		{
 			//Filter the values so that they have less weight on the edge
