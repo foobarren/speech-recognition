@@ -144,7 +144,7 @@ void mfcc_compare(int type)
 					while (words != NULL)
 					{
 						double now = compare(mfcc_frames, frame_n, words->frames, frame_n);
-						if(now <0.95){
+						if(now <0.9){
 							isfound =1;
 							printf("match at second:%f  score:%f mfcc:%s wav:%s \n", i*WINSTEP/1000,now, words->name,node->wav->name);
 							if(type)
@@ -158,11 +158,11 @@ void mfcc_compare(int type)
 						char *path = (char*)malloc(strlen(node->wav->name) + 9);
 						char *ext = ".mfcc";
 						char str_int[4];
-						itoa(i, str_int, 10);  
+						sprintf(str_int, "%d", i); 
 						memcpy(path, node->wav->name, strlen(node->wav->name));
 						memcpy(path + strlen(node->wav->name), str_int, strlen(str_int));
 						memcpy(path + strlen(node->wav->name)+strlen(str_int), ext, 6);
-						new_mfcc(mfcc_frames, frame_n, path);
+					new_mfcc(mfcc_frames, frame_n, path);
 						free(path);
 					}						
 					free(mfcc_frames);
